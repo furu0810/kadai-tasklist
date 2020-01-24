@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     
     def new
         
-        @task = Task.new(content: "ここにタスク内容を入力")
+        @task = Task.new
         
     end
     
