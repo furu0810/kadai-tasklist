@@ -1,0 +1,11 @@
+<%# new.html.erbとedit.html.erbのファームを部分テンプレート(パーション) %>
+
+<%= form_with(model: @task, local: true) do |f| %>
+    
+    <%= f.label :content, "タスク内容" %>
+    
+    <%= f.text_field :content, placeholder: "ここにタスク内容を入力" %>
+    
+    <%= f.submit "追加" %>
+    
+    <% end %>
