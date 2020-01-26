@@ -33,7 +33,7 @@
     
         <%= f.label :status, "ステータス" %>
         
-        <input type="text" value="" name="task[status]" id="task_status" placeholder="ここにステータスを入力">
+        <%= f.text_field :status, placeholder: "ここにステータスを入力" %>
         
         <%= f.label :content, "タスク内容" %>
         
