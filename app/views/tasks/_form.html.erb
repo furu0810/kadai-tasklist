@@ -1,11 +1,44 @@
 <%# new.html.erbとedit.html.erbのファームを部分テンプレート(パーション) %>
 
-<%= form_with(model: @task, local: true) do |f| %>
+<%= form_with(model: task, local: true) do |f| %>
+
+    <% if task.errors.any? %>
     
-    <%= f.label :content, "タスク内容" %>
-    
-    <%= f.text_field :content, placeholder: "ここにタスク内容を入力" %>
-    
-    <%= f.submit "追加" %>
-    
+        <div id="error_explanation">
+            
+            <h2>
+                
+                <%= pluralize(task.errors.count, "error") %>
+                があります:
+                
+            </h2>
+            
+                <ul>
+                    
+                    <% task.errors.full_messages.each do |msg| %>
+                    
+                    <li>
+                        
+                        <%= msg %>
+                        
+                    </li>
+                    
+                    <% end %>
+                    
+                </ul>
+            
+        </div>
+
     <% end %>
+    
+        <%= f.label :status, "ステータス" %>
+        
+        <input type="text" value="" name="task[status]" id="task_status" placeholder="ここにステータスを入力">
+        
+        <%= f.label :content, "タスク内容" %>
+        
+        <%= f.text_field :content, placeholder: "ここにタスク内容を入力" %>
+        
+        <%= f.submit "新規追加" %>
+        
+        <% end %>
