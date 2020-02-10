@@ -1,10 +1,15 @@
-<% flash.each do |task_type, task| %>
+<div class="row">
+  
+  <div class="col-6">
 
-    <div>
+    <% flash.each do |task_type, task| %>
+
+      <div class="alert alert-<%= task_type %>">
         
-        <%= task %>
+        <%= task %>    
         
-        
-    </div>
-    
-    <% end %>
+      </div>
+  </div>
+</div>
+
+<% end %>

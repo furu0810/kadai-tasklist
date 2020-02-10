@@ -1,44 +1,47 @@
 <%# new.html.erbとedit.html.erbのファームを部分テンプレート(パーション) %>
 
+<div class="row">
+  <div class="col-6">
+
 <%= form_with(model: task, local: true) do |f| %>
 
-    <% if task.errors.any? %>
+  <% if task.errors.any? %>
     
-        <div id="error_explanation">
-            
-            <h2>
-                
-                <%= pluralize(task.errors.count, "error") %>
-                があります:
-                
-            </h2>
-            
-                <ul>
+    <div id="error_explanation" class="alert alert-warning">
+      
+      <ul class="mb-0">
                     
-                    <% task.errors.full_messages.each do |msg| %>
+        <% task.errors.full_messages.each do |msg| %>
                     
-                    <li>
+          <li>
                         
-                        <%= msg %>
+            <%= msg %>
                         
-                    </li>
+          </li>
                     
-                    <% end %>
-                    
-                </ul>
-            
-        </div>
-
-    <% end %>
-    
-        <%= f.label :status, "ステータス" %>
-        
-        <%= f.text_field :status, placeholder: "ここにステータスを入力" %>
-        
-        <%= f.label :content, "タスク内容" %>
-        
-        <%= f.text_field :content, placeholder: "ここにタスク内容を入力" %>
-        
-        <%= f.submit "投稿" %>
-        
         <% end %>
+                    
+      </ul>
+            
+    </div>
+
+  <% end %>
+  
+  <div class="form-group">
+    
+<%= f.label :status, "ステータス" %>
+        
+<%= f.text_field :status, placeholder: "ここにステータスを入力", class: "form-control" %>
+        
+<%= f.label :content, "タスク内容" %>
+        
+<%= f.text_field :content, placeholder: "ここにタスク内容を入力", class: "form-control" %>
+
+  </div>
+        
+<%= f.submit "投稿", class: "btn btn-primary" %>
+        
+<% end %>
+
+  </div>
+</div>
