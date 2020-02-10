@@ -1,24 +1,26 @@
 <h1>タスク管理アプリ</h1>
 
-    <h3>タスク一覧</h3>
+  <h3>タスク一覧</h3>
         
-        <ul>
+    <ul>
             
-            <% @tasks.each do |task| %>
+      <% @tasks.each do |task| %>
             
-            <li>
-                <%= link_to task.id, task %>
+        <li>
+          <%= link_to task.id, task %>
                 
-                <%= task.status %>
+          <%= task.status %>
                 
-                &gt;
+          &gt;
                 
-                <%= task.content %>
-            </li>
+          <%= task.content %>
+        </li>
             
-            <% end %>
+      <% end %>
             
-        </ul>
+    </ul>
+    
+    <%= paginate @tasks %>
         
     <%= link_to "新規タスクの投稿ページ", new_task_path %>
             
