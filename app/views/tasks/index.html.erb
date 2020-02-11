@@ -1,4 +1,20 @@
+<% if logged_in? %>
 
+  <p>ログイン完了ユーザー：
+    <%= current_user.name %>
+  </p>
+  
+<% else %>
+
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>Welcome to taskapplication</h1>
+    
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    
+  </div>
+</div>
+<% end %>
 
   <h3>タスク一覧</h3>
   
@@ -46,4 +62,5 @@
   <% end %>  
         
     <%= link_to "新規タスクの投稿", new_task_path, class: "btn btn-success" %>
+    <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
             

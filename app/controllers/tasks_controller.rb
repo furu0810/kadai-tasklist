@@ -1,86 +1,85 @@
 class TasksController < ApplicationController
    
-   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_logged_in
    
-   
-    def index
+  def index
         
-        @tasks = Task.order(id: :desc).page(params[:page]).per(10)
+    @tasks = Task.order(id: :desc).page(params[:page]).per(10)
         
-    end
+  end
     
-    def create
+  def create
         
-        @task = Task.new(task_params)
+    @task = Task.new(task_params)
         
-            if @task.save
-                flash[:success] = "タスクが正常に追加されました"
-                redirect_to @task
+      if @task.save
+        flash[:success] = "タスクが正常に追加されました"
+        redirect_to @task
                 
-            else 
-                flash.now[:danger] = "タスクが正常に投稿されませんでした。"
-                render :new
+      else 
+        flash.now[:danger] = "タスクが正常に投稿されませんでした。"
+        render :new
             
-            end
+      end
         
-    end
+  end
     
-    def new
+  def new
         
-        @task = Task.new
+    @task = Task.new
         
-    end
+  end
     
-    def edit
+  def edit
         
-    end
+  end
     
-    def show
+  def show
         
         
-    end
+  end
     
-    def update
+  def update
         
         
-            if @task.update(task_params)
-                flash[:success] = "タスク内容は正常に更新されました"
-                redirect_to @task
-            
-            else
-                flash.now[:danger] = "タスク内容は正常に更新されませんでした"
-                render :edit
+    if @task.update(task_params)
+      flash[:success] = "タスク内容は正常に更新されました"
+      redirect_to @task
+    else
+      flash.now[:danger] = "タスク内容は正常に更新されませんでした"
+      render :edit
                 
-            end 
+    end 
         
-    end
+  end
     
-    def destroy
+  def destroy
         
-        @task.destroy
+    @task.destroy
         
-        flash[:success] = "タスクは正常に削除されました"
-        redirect_to tasks_url
+    flash[:success] = "タスクは正常に削除されました"
+    redirect_to tasks_url
         
-    end
+  end
     
-    private
+  private
     
-    # tasks_controller.rb内の@task = Task.find(params[:id])の部分テンプレート(パーション)
+  # tasks_controller.rb内の@task = Task.find(params[:id])の部分テンプレート(パーション)
     
-    def set_task
+  def set_task
         
-        @task = Task.find(params[:id])
+    @task = Task.find(params[:id])
     
-    end    
+  end    
     
-    #Strong parameter
+  #Strong parameter
     
-    def task_params
+  def task_params
         
-        params.require(:task).permit(:content, :status)
+    params.require(:task).permit(:content, :status)
         
-    end
+  end
     
     
 end
