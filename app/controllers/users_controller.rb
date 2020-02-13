@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def new
     @user = User.new
   end
@@ -16,11 +17,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    
   end
   
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(25)
+    
   end
   
   #Strong Parameter 
