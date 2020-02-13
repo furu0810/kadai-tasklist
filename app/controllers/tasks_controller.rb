@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-   
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  
+  before_action :correct_user, only: [:destroy]
+ # before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in
    
   def index
         
-    @tasks = Task.order(id: :desc).page(params[:page]).per(10)
+    @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(10)
         
   end
     
@@ -67,11 +68,11 @@ class TasksController < ApplicationController
     
   # tasks_controller.rb内の@task = Task.find(params[:id])の部分テンプレート(パーション)
     
-  def set_task
+  #def set_task
         
-    @task = Task.find(params[:id])
+   # @task = Task.find(params[:id])
     
-  end    
+  #end    
     
   #Strong parameter
     
@@ -80,6 +81,11 @@ class TasksController < ApplicationController
     params.require(:task).permit(:content, :status)
         
   end
-    
-    
+  
+  def correct_user
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
+      redirect_to root_url
+    end
+  end
 end

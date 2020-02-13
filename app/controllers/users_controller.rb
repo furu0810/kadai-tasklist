@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = "ユーザーを登録しました。"
-    redirect to login_url
+    redirect_to login_url
     else
       flash.now[:danger] = "ユーザーを登録できませんでした。"
     render :new
@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @user = User.find(params[:id])
   end
   
   def index
-  
+    @users = User.order(id: :desc).page(params[:page]).per(25)
   end
   
   #Strong Parameter 
