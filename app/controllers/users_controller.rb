@@ -16,14 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    
-  end
-  
-  def index
-    
-  end
-  
   #Strong Parameter 
   
   private
